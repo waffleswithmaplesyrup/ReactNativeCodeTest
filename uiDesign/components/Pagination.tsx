@@ -49,7 +49,6 @@ const Pagination = ({ items, paginationIndex, scrollX }: Props) => {
           />
           )
         })
-        
       }
     </View>
   )

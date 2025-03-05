@@ -2,17 +2,19 @@ import { Dimensions, Image, Text, View } from "react-native";
 import { ImageSliderType } from "../data/SliderData";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated, { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 type Props = {
   item: ImageSliderType;
   index: number;
   scrollX: SharedValue<number>;
+  autoPlayOn: boolean
 };
 
 
 const { width } = Dimensions.get("screen");
 
-const SliderItem = ({ item, index, scrollX }: Props) => {
+const SliderItem = ({ item, index, scrollX, autoPlayOn }: Props) => {
 
   const rnAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -44,26 +46,54 @@ const SliderItem = ({ item, index, scrollX }: Props) => {
         alignItems: "center",
         gap: 20,
         width: width
-      }, rnAnimatedStyle]}
+      }, 
+      !autoPlayOn && rnAnimatedStyle
+    ]}
     >
       <Image 
         style={{
-          width: 300,
+          width: autoPlayOn ? "100%" : 300,
           height: 200,
-          borderRadius: 20,
+          borderRadius: autoPlayOn ? 0 : 20,
         }}
         source={item.image} />
       <LinearGradient
         colors={['transparent', 'rgba(20, 96, 74, 0.8)']}
         style={{
           position: "absolute",
-          width: 300,
+          width: autoPlayOn ? "100%" : 300,
           height: 200,
           padding: 20,
-          borderRadius: 20,
-          justifyContent: "center"
+          borderRadius: autoPlayOn ? 0 : 20,
+          alignItems: "flex-start",
+          justifyContent: item.time !== undefined ? "space-between" : "center",
         }}
-      >
+      > 
+        {
+          item.time !== undefined &&
+          <View
+            style={{
+              borderRadius: 5,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "white",
+              padding: 5
+            }}
+          >
+            <AntDesign name="clockcircleo" size={10} color="grey" />
+            <Text
+              style={{
+                paddingLeft: 5,
+                color: "black",
+                fontSize: 10,
+                letterSpacing: 1.2,
+              }}
+            >
+              {item.time}
+            </Text>
+          </View>
+        }
         <Text
           style={{
             width: "60%",

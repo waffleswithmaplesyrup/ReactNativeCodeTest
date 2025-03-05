@@ -2,7 +2,8 @@ import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
 import Header from "../../components/Header"
 import Slider from "../../components/Slider"
-import { ImageSlider } from "../../data/SliderData"
+import { HeaderImageSlider, ShowsImageSlider } from "../../data/SliderData"
+import { Text, View } from "react-native"
 
 
 const HomeScreen = () => {
@@ -12,7 +13,26 @@ const HomeScreen = () => {
 
       <Header />
       
-      <Slider itemList={ImageSlider} />
+      <Slider itemList={HeaderImageSlider} autoPlayOn={true} />
+
+      <View
+        style={{
+          marginHorizontal: 10,
+          marginBottom: 10, 
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        <Text style={{
+          fontSize: 20,
+        }}>Upcoming Shows</Text>
+        <Text style={{
+          fontSize: 12,
+          color: "rgb(225, 74, 47)"
+        }}>View All</Text>
+      </View>
+      <Slider itemList={ShowsImageSlider} autoPlayOn={false} />
       
 
     </SafeAreaView>

@@ -1,17 +1,23 @@
-import { Dimensions, FlatList, View, ViewToken } from "react-native"
-import { ImageSlider, ImageSliderType } from "../data/SliderData"
+import { Dimensions, View, ViewToken } from "react-native"
+import { ImageSliderType } from "../data/SliderData"
 import SliderItem from "./SliderItem"
-import Animated, { scrollTo, useAnimatedRef, useAnimatedScrollHandler, useDerivedValue, useSharedValue } from "react-native-reanimated";
+import Animated, { 
+  scrollTo, 
+  useAnimatedRef, 
+  useAnimatedScrollHandler, 
+  useDerivedValue, 
+  useSharedValue } from "react-native-reanimated";
 import Pagination from "./Pagination";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  itemList: ImageSliderType[]
+  itemList: ImageSliderType[],
+  autoPlayOn: boolean,
 };
 
 const { width } = Dimensions.get("screen");
 
-const Slider = ({ itemList }: Props) => {
+const Slider = ({ itemList, autoPlayOn }: Props) => {
   const scrollX = useSharedValue(0);
 
   const [paginationIndex, setPaginationIndex] = useState(0);
@@ -19,23 +25,25 @@ const Slider = ({ itemList }: Props) => {
 
   // for autoplay
   const ref = useAnimatedRef<Animated.FlatList<any>>();
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isAutoPlay, setIsAutoPlay] = useState(autoPlayOn);
   const interval = useRef<NodeJS.Timeout>();
   const offset = useSharedValue(0);
 
-  useEffect(() => {
-    if (isAutoPlay) {
-      interval.current = setInterval(() => {
-        offset.value = offset.value + width;
-      }, 5000)
-    } else {
-      clearInterval(interval.current);
-    }
-
-    return () => {
-      clearInterval(interval.current);
-    }
-  }, [isAutoPlay, offset, width]);
+  if (autoPlayOn) {
+    useEffect(() => {
+      if (isAutoPlay) {
+        interval.current = setInterval(() => {
+          offset.value = offset.value + width;
+        }, 5000)
+      } else {
+        clearInterval(interval.current);
+      }
+  
+      return () => {
+        clearInterval(interval.current);
+      }
+    }, [isAutoPlay, offset, width]);
+  }
 
   useDerivedValue(() => {
     scrollTo(ref, offset.value, 0, true);
@@ -72,7 +80,7 @@ const Slider = ({ itemList }: Props) => {
         ref={ref}
         data={data}
         renderItem={({ item, index }) => (
-        <SliderItem item={item} index={index} scrollX={scrollX} />
+        <SliderItem autoPlayOn={autoPlayOn} item={item} index={index} scrollX={scrollX} />
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -85,7 +93,10 @@ const Slider = ({ itemList }: Props) => {
         onScrollBeginDrag={() => setIsAutoPlay(false)}
         onScrollEndDrag={() => setIsAutoPlay(true)}
       />
-      <Pagination items={itemList} scrollX={scrollX} paginationIndex={paginationIndex} />
+      {
+        autoPlayOn &&
+        <Pagination items={itemList} scrollX={scrollX} paginationIndex={paginationIndex} />
+      }
     </View>
   )
 }
