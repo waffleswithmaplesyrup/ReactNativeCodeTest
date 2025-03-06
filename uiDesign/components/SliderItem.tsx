@@ -59,7 +59,7 @@ const SliderItem = ({ item, index, scrollX, autoPlayOn }: Props) => {
         }}
         source={item.image} />
       <LinearGradient
-        colors={['transparent', 'rgba(20, 96, 74, 0.8)']}
+        colors={['transparent', 'rgba(56, 118, 101, 0.8)']}
         style={{
           position: "absolute",
           width: autoPlayOn ? "100%" : 300,
