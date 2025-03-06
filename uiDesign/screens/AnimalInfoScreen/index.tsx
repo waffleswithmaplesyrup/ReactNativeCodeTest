@@ -1,9 +1,10 @@
+import { Text, View } from "react-native"
 
 const AnimalInfoScreen = () => {
   return (
-    <div>
-      
-    </div>
+    <View>
+      <Text>Animal info</Text>
+    </View>
   )
 }
 

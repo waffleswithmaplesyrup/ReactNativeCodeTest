@@ -1,16 +1,26 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { MenuItemsType } from "../data/MenuData";
+import { useNavigation } from "@react-navigation/native";
+import { animalInfoName } from "../App";
 
 type Props = {
   item: MenuItemsType;
 };
 
 const MenuItem = ({ item }: Props) => {
+
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(animalInfoName);
+  };
+
   return (
     <TouchableOpacity
       style={{
         alignItems: "center"
       }}
+      onPress={handlePress}
     >
       <View
         style={{

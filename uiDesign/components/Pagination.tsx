@@ -40,10 +40,10 @@ const Pagination = ({ items, paginationIndex, scrollX }: Props) => {
           <Animated.View
             key={index}
             style={[{
-              backgroundColor: paginationIndex === index ? "#222" : "#aaa",
+              backgroundColor: paginationIndex === index ? "tomato" : "rgb(220, 220, 220)",
               height: 8,
               width: 8,
-              marginHorizontal: 2,
+              marginHorizontal: 4,
               borderRadius: 8,
             }, pgAnimationStyle]}
           />

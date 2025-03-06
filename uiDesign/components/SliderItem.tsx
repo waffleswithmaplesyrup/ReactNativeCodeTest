@@ -82,12 +82,13 @@ const SliderItem = ({ item, index, scrollX, autoPlayOn }: Props) => {
               padding: 5
             }}
           >
-            <AntDesign name="clockcircleo" size={10} color="grey" />
+            <AntDesign name="clockcircleo" size={10} color="rgb(100, 100, 100)" />
             <Text
               style={{
                 paddingLeft: 5,
-                color: "black",
+                color: "rgb(100, 100, 100)",
                 fontSize: 10,
+                fontWeight: "bold",
                 letterSpacing: 1.2,
               }}
             >

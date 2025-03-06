@@ -95,7 +95,15 @@ const Slider = ({ itemList, autoPlayOn }: Props) => {
       />
       {
         autoPlayOn &&
-        <Pagination items={itemList} scrollX={scrollX} paginationIndex={paginationIndex} />
+        <View
+          style={{
+            position: "relative",
+            bottom: 50,
+            marginBottom: -50,
+          }}
+        >
+          <Pagination items={itemList} scrollX={scrollX} paginationIndex={paginationIndex} />
+        </View>
       }
     </View>
   )
