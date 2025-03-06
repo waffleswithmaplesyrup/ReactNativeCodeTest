@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { ScrollView, Text, View } from "react-native"
+import { Dimensions, ScrollView, Text, View } from "react-native"
 
 // Data
 import { HeaderImageSlider, ShowsImageSlider } from "../../data/SliderData"
@@ -13,16 +13,23 @@ import Slider from "../../components/Slider"
 import Card from "../../components/Card"
 import MenuItem from "../../components/MenuItem"
 
+const { height } = Dimensions.get("screen");
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingBottom: -35,
+      }}
+    >
       <StatusBar style="auto" />
 
       <Header />
       
-      <ScrollView>
-
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
         <Slider itemList={HeaderImageSlider} autoPlayOn={true} />
 
         <View
@@ -69,6 +76,9 @@ const HomeScreen = () => {
         </View>
         <Slider itemList={ShowsImageSlider} autoPlayOn={false} />
         
+        <View style={{
+          paddingBottom: 50
+        }}/>
       </ScrollView>
 
     </SafeAreaView>

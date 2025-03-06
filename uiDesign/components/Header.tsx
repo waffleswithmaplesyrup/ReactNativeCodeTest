@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <View
       style={{
-        padding: 20,
+        paddingHorizontal: 20,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center"
