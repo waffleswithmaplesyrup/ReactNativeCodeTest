@@ -1,13 +1,18 @@
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { ScrollView, Text, View } from "react-native"
+
+// Data
+import { HeaderImageSlider, ShowsImageSlider } from "../../data/SliderData"
+import { CardItems } from "../../data/CardData"
+import { MenuItems } from "../../data/MenuData"
+
+// Components
 import Header from "../../components/Header"
 import Slider from "../../components/Slider"
-import { HeaderImageSlider, ShowsImageSlider } from "../../data/SliderData"
-import { Dimensions, ScrollView, Text, View } from "react-native"
-import { CardItems } from "../../data/CardData"
 import Card from "../../components/Card"
+import MenuItem from "../../components/MenuItem"
 
-const { width } = Dimensions.get("screen");
 
 const HomeScreen = () => {
   return (
@@ -23,9 +28,20 @@ const HomeScreen = () => {
         <View
           style={{
             flexDirection: "row",
-            // justifyContent: "space-around",
-            gap: 20,
-            // width: width, 
+            flexWrap: "wrap",
+            gap: 20, 
+            padding: 20,
+          }}
+        >
+          {
+            MenuItems?.map((item, index) => <MenuItem key={index} item={item}  />)
+          }
+        </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 20, 
             padding: 20,
           }}
         >
@@ -58,8 +74,5 @@ const HomeScreen = () => {
     </SafeAreaView>
   )
 }
-
-// TODO: buttons to navigate to: Map, Inhabitants, Shows, Shopping, Dine, Meet & Greets
-// TODO: cards to view e-tickets, and park operation hours
 
 export default HomeScreen

@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native"
+import { Image, Text, TouchableOpacity, View } from "react-native"
 import { CardItemsType } from "../data/CardData";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 const Card = ({ item }: Props) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         padding: 10,
         alignSelf: 'center',
@@ -55,7 +55,7 @@ const Card = ({ item }: Props) => {
           color: "tomato"
         }}
       >{item.action}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

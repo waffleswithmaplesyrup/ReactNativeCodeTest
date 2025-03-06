@@ -1,4 +1,4 @@
-import { Dimensions, Image, Text, View } from "react-native";
+import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import { ImageSliderType } from "../data/SliderData";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated, { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
@@ -11,6 +11,7 @@ type Props = {
   autoPlayOn: boolean
 };
 
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const { width } = Dimensions.get("screen");
 
