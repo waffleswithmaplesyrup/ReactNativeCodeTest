@@ -54,7 +54,7 @@ const SliderItem = ({ item, index, scrollX, autoPlayOn }: Props) => {
         style={{
           width: autoPlayOn ? "100%" : 300,
           height: 200,
-          borderRadius: autoPlayOn ? 0 : 20,
+          borderRadius: autoPlayOn ? 0 : 10,
         }}
         source={item.image} />
       <LinearGradient
@@ -64,7 +64,7 @@ const SliderItem = ({ item, index, scrollX, autoPlayOn }: Props) => {
           width: autoPlayOn ? "100%" : 300,
           height: 200,
           padding: 20,
-          borderRadius: autoPlayOn ? 0 : 20,
+          borderRadius: autoPlayOn ? 0 : 10,
           alignItems: "flex-start",
           justifyContent: item.time !== undefined ? "space-between" : "center",
         }}

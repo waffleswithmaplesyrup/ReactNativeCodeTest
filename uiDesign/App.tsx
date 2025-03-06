@@ -50,6 +50,7 @@ export default function App() {
             },
             tabBarActiveTintColor: 'tomato',
             tabBarInactiveTintColor: 'gray',
+            headerShown: false,
           })}
         >
           <Tab.Screen name={homeName} component={HomeScreen} />
