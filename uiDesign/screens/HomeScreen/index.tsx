@@ -39,10 +39,8 @@ const HomeScreen = () => {
   )
 }
 
-// TODO: image carrousel header
 // TODO: buttons to navigate to: Map, Inhabitants, Shows, Shopping, Dine, Meet & Greets
 // TODO: cards to view e-tickets, and park operation hours
-// TODO: horizonatl scroll view that show cards of upcoming shows
 // TODO: bottom navigation tabs: Home, Wallet, More
 
 export default HomeScreen
